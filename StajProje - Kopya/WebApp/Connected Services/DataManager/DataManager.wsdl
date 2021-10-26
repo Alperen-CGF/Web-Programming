@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmEkle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Film_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Explan" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Vision_Date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Imdb" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmEkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilmEkleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmGuncelle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Film_Id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Film_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Explan" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Vision_Date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Imdb" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmGuncelleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilmGuncelleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmDetayGetir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="filmID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmDetayGetirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilmDetayGetirResult" type="tns:Film" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Film">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Film_ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Film_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Film_Pic" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Explan" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Vision_Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Imdb" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Time" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FilmListele">
+        <s:complexType />
+      </s:element>
+      <s:element name="FilmListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilmListeleResult" type="tns:ArrayOfFilm" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFilm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Film" nillable="true" type="tns:Film" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FilmSil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Film_Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilmSilResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilmSilResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilmEkleSoapIn">
+    <wsdl:part name="parameters" element="tns:FilmEkle" />
+  </wsdl:message>
+  <wsdl:message name="FilmEkleSoapOut">
+    <wsdl:part name="parameters" element="tns:FilmEkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilmGuncelleSoapIn">
+    <wsdl:part name="parameters" element="tns:FilmGuncelle" />
+  </wsdl:message>
+  <wsdl:message name="FilmGuncelleSoapOut">
+    <wsdl:part name="parameters" element="tns:FilmGuncelleResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilmDetayGetirSoapIn">
+    <wsdl:part name="parameters" element="tns:FilmDetayGetir" />
+  </wsdl:message>
+  <wsdl:message name="FilmDetayGetirSoapOut">
+    <wsdl:part name="parameters" element="tns:FilmDetayGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilmListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:FilmListele" />
+  </wsdl:message>
+  <wsdl:message name="FilmListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:FilmListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="FilmSilSoapIn">
+    <wsdl:part name="parameters" element="tns:FilmSil" />
+  </wsdl:message>
+  <wsdl:message name="FilmSilSoapOut">
+    <wsdl:part name="parameters" element="tns:FilmSilResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DataManagerSoap">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilmEkle">
+      <wsdl:input message="tns:FilmEkleSoapIn" />
+      <wsdl:output message="tns:FilmEkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilmGuncelle">
+      <wsdl:input message="tns:FilmGuncelleSoapIn" />
+      <wsdl:output message="tns:FilmGuncelleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilmDetayGetir">
+      <wsdl:input message="tns:FilmDetayGetirSoapIn" />
+      <wsdl:output message="tns:FilmDetayGetirSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilmListele">
+      <wsdl:input message="tns:FilmListeleSoapIn" />
+      <wsdl:output message="tns:FilmListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FilmSil">
+      <wsdl:input message="tns:FilmSilSoapIn" />
+      <wsdl:output message="tns:FilmSilSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataManagerSoap" type="tns:DataManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmEkle">
+      <soap:operation soapAction="http://tempuri.org/FilmEkle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmGuncelle">
+      <soap:operation soapAction="http://tempuri.org/FilmGuncelle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmDetayGetir">
+      <soap:operation soapAction="http://tempuri.org/FilmDetayGetir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmListele">
+      <soap:operation soapAction="http://tempuri.org/FilmListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmSil">
+      <soap:operation soapAction="http://tempuri.org/FilmSil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataManagerSoap12" type="tns:DataManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmEkle">
+      <soap12:operation soapAction="http://tempuri.org/FilmEkle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmGuncelle">
+      <soap12:operation soapAction="http://tempuri.org/FilmGuncelle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmDetayGetir">
+      <soap12:operation soapAction="http://tempuri.org/FilmDetayGetir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmListele">
+      <soap12:operation soapAction="http://tempuri.org/FilmListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FilmSil">
+      <soap12:operation soapAction="http://tempuri.org/FilmSil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataManager">
+    <wsdl:port name="DataManagerSoap" binding="tns:DataManagerSoap">
+      <soap:address location="https://localhost:44302/DataManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataManagerSoap12" binding="tns:DataManagerSoap12">
+      <soap12:address location="https://localhost:44302/DataManager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
